@@ -55,6 +55,8 @@ var holzDepot    = ressources.first();
 var eisenDepot   = holzDepot.next();
 var sakeDepot    = eisenDepot.next();
 var nahrungDepot = sakeDepot.next();
-console.log(holzDepot, eisenDepot, sakeDepot, nahrungDepot);
 
-console.log(holzDepot.children('font').text());
+storageDepot.set('holz', holzDepot.children('font').text());
+storageDepot.set('eisen', eisenDepot.children('font').text());
+storageDepot.set('sake', sakeDepot.children('font').text());
+storageDepot.set('nahrung', nahrungDepot.contents().last().text());
