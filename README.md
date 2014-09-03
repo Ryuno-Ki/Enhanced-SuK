@@ -6,6 +6,7 @@ This is a first step to improve the UX of [Schlacht um Kyoto](http://schlacht-um
 
  1. Get [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)
  1. Get [Firebug](https://addons.mozilla.org/en-US/firefox/addon/firebug/)
+ 1. RightClick the Firebug icon and activate all modules
  1. Toggle `javascript.options.showInConsole` and `javascript.options.strict` to `true` in [about:config](about:config)
  1. Clone the repo: `git clone https://github.com/Ryuno-Ki/Enhanced-SuK.git $HOME/src/GMscripts/`
  1. Start Firefox and Open the File via `Ctrl-O`
