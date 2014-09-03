@@ -1,5 +1,5 @@
 ﻿// ==UserScript==
-// @name        Enhance Schlacht-im-Kyoto
+// @name        Enhance Schlacht-um-Kyoto
 // @namespace   http://github.com/Ryuno-Ki/GMscripts
 // @description Enhance Schlacht-um-Kyoto
 // @match       http://schlacht-um-kyoto.de/*
