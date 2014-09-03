@@ -1,0 +1,7 @@
+digraph umlSoldier
+{
+  node[shape="record"];
+  rankdir="bt";
+
+  soldier [label="{<f0>SOLDIER|<f1>Name\n|<f2>Baukosten Holz\n|<f3>Baukosten Eisen\n|<f4>Baukosten Sake\n|<f5>Baukosten Bewohner\n|<f6>Unterhalt\n|<f7>Bauzeit\n|<f8>Gesundheit\n|<f9>Angriff\n|<f10>Verteidigung\n|<f11>Geschwindigkeit\n|<f12>Waffe\n|<f13>Rüstung\n|<f14>Transport\n}"];
+}
