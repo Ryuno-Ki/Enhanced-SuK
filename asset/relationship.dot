@@ -1,0 +1,18 @@
+digraph relationship
+{
+  node[shape="box"];
+  World;
+  Town;
+  Owner;
+  //{rank=same;World,Town,Owner}
+  World -> Owner [dir="forward" arrowhead="crow" arrowtail="normal" label="no org" labeljust="l"];
+  World -> Clan [dir="forward" arrowhead="crow" arrowtail="normal"];
+  Clan -> Owner [dir="forward" arrowhead="crow" arrowtail="normal"];
+  Owner -> Town [dir="forward" arrowhead="crow" arrowtail="normal"];
+  Owner -> Spy [dir="forward" arrowhead="crow" arrowtail="normal"];
+  Owner -> Message [dir="forward" arrowhead="crow" arrowtail="normal"];
+  Owner -> Report [dir="forward" arrowhead="crow" arrowtail="normal"];
+  Owner -> Achievement [dir="forward" arrowhead="crow" arrowtail="normal"];
+  Town -> Building [dir="forward" arrowhead="crow" arrowtail="normal"];
+  Town -> Soldier [dir="forward" arrowhead="crow" arrowtail="normal"];
+}
