@@ -2,3 +2,6 @@
 *.*~
 *~
 *.swp
+
+# Ignoring regeneratable files
+node_modules/
