@@ -28,19 +28,19 @@ if (window.top === window.self) {
   };
 
   settingsObject.prototype.get=function(name){
-    var value=GM_getValue(this.prefix+""+name, this.default[name] || "{b}0")
+    var value=GM_getValue(this.prefix+""+name, this.default[name] || "{b}0");
     if(!value.indexOf){ return value; }
-    if(value.indexOf("{o}")==0){
+    if(value.indexOf("{o}")===0){
       try{
 	return eval("("+value.substr(3)+")");
       }catch(e){
-	console.log("Error while calling variable "+name+" while translating into an object: \n\n"+e+"\n\ncode:\n"+value.substr(3))
+	console.log("Error while calling variable "+name+" while translating into an object: \n\n"+e+"\n\ncode:\n"+value.substr(3));
 	return false;
       }
     }
-    if(value.indexOf("{b}")==0){ return !!parseInt(value.substr(3)); }
-    if(value.indexOf("{n}")==0){ return parseFloat(value.substr(3)); }
-    if(value.indexOf("{s}")==0){ return value.substr(3); }
+    if(value.indexOf("{b}")===0){ return !!parseInt(value.substr(3)); }
+    if(value.indexOf("{n}")===0){ return parseFloat(value.substr(3)); }
+    if(value.indexOf("{s}")===0){ return value.substr(3); }
     return value;
   };
 
@@ -65,7 +65,7 @@ if (window.top === window.self) {
     getUrlVar: function(name){
       return $.getUrlVars()[name];
     }
-  }) // End getUrlVars from http://jquery-howto.blogspot.de/2009/09/get-url-parameters-values-with-jquery.html 
+  }); // End getUrlVars from http://jquery-howto.blogspot.de/2009/09/get-url-parameters-values-with-jquery.html 
 
   function decode(snippet) {
     var sanitized = snippet;
