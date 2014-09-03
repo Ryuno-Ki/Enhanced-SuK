@@ -1,0 +1,39 @@
+{
+  "name": "Enhanced-SuK",
+  "version": "0.1.0",
+  "description": "Enhancing the UX of http://schlacht-um-kyoto.de",
+  "main": "main.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ryuno-Ki/Enhanced-SuK"
+  },
+  "keywords": [
+    "Schlacht um Kyoto",
+    "Browser Game",
+    "Browserspiel",
+    "Rollenspiel",
+    "Mittelalter",
+    "Japan",
+    "Medieval"
+  ],
+  "author": "André Jaenisch",
+  "license": "BSD v2",
+  "bugs": {
+    "url": "https://github.com/Ryuno-Ki/Enhanced-SuK/issues"
+  },
+  "homepage": "https://github.com/Ryuno-Ki/Enhanced-SuK",
+  "devDependencies": {
+    "grunt": "0.4.5",
+    "grunt-contrib-jshint": "0.10.0",
+    "grunt-contrib-uglify": "0.5.1",
+    "grunt-contrib-watch": "0.6.1",
+    "grunt-jsdoc": "0.5.7",
+    "grunt-notify": "0.3.1"
+  },
+  "dependencies": {
+    "jquery": "1.6.2"
+  }
+}
