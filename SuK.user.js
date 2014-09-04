@@ -1,11 +1,11 @@
 ﻿// ==UserScript==
 // @name        Enhance Schlacht-um-Kyoto
-// @namespace   http://github.com/Ryuno-Ki/GMscripts
+// @namespace   http://github.com/Ryuno-Ki/Enhanced-SuK.git
 // @description Enhance Schlacht-um-Kyoto
 // @match       http://schlacht-um-kyoto.de/*
 // @match       http://www.schlacht-um-kyoto.de/*
 // @require     https://code.jquery.com/jquery-1.6.2.min.js
-// @version     1
+// @version     0.0.1
 // @grant       GM_getValue
 // @grant       GM_setValue
 // ==/UserScript==
