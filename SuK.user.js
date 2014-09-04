@@ -96,7 +96,7 @@ if (window.top === window.self) {
   $('.Siedlung').children('img').each( function() {
     //if (savedGebaeudeBedarf.holz === null)
     storageGebaeude.set(this.alt, {'holz': null, 'eisen': null, 'sake': null});
-    console.log(storageGebaeude.get(this.alt));
+    //console.log(storageGebaeude.get(this.alt));
   });
 
   var currentBedarf = storageGebaeude.get(currentGebaeude);
@@ -107,5 +107,9 @@ if (window.top === window.self) {
   currentBedarf.eisen = currentEisenBedarf;
   currentBedarf.sake = currentSakeBedarf;
   storageGebaeude.set(currentGebaeude, currentBedarf);
-  console.log(storageGebaeude.get(currentGebaeude));
-} // Outside the chat frame
+  //console.log(storageGebaeude.get(currentGebaeude));
+  var linkInChat = $('#chatMessages').find('a');
+  console.log(linkInChat);
+  linkInChat.css({'color': '#AFE8B5'});
+} else { // Outside the main frame, that is, inside the Ad
+}
