@@ -7,6 +7,7 @@ module.exports = function(grunt) {
     meta: {
       // Store src, spec, helper and fixture globs here
       src: './*.js',
+      dest: './SuK.user.js',
       dotsrc: 'asset/*.dot',
       dotdest: 'asset/*.png'
     },
@@ -30,6 +31,12 @@ module.exports = function(grunt) {
         title: 'Grunt for GreaseMonkey-Script SuK'
       }
     },
+    browserify: {
+      all: { 
+        src: ['SuK.js'],
+        dest: '<%= meta.dest %>'
+      }
+    },
     graphviz: {
       dist: {
         files: {
@@ -42,6 +49,7 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-graphviz');
   grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-notify');
@@ -49,4 +57,5 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['jshint']);
   grunt.registerTask('doc', ['jsdoc']);
   grunt.registerTask('dot', ['graphviz']);
+  grunt.registerTask('build', ['browserify']);
 };
