@@ -14,25 +14,14 @@
 if (window.top === window.self) {
   // Not inside the ad frame
   var hepburn = require('hepburn');
-  var hiragana = hepburn.toHiragana("HIRAGANA");
-  var citizen = document.getElementById('header_citizens');
-  console.log(citizen);
-  for (var i = 0; i < hiragana.length; i++) {
-      console.log(hiragana[i]);
-      var ascii = hiragana[i].charCodeAt(0);
-      var unicode = '0x' + ascii.toString(16);
-      console.log(unicode);
-      citizen.appendChild(document.createTextNode(String.fromCodePoint(unicode)));
-  }
   var chatMessage = document.querySelectorAll('.chatMessage');
   var authorTime, authorTimePair, author, time;
   for (var i = 0; i < chatMessage.length; i++) {
-      authorTime = chatMessage[i].children[0].innerHTML;
-      authorTimePair = authorTime.split('(');
+      authorTime = chatMessage[i].children[0];
+      authorTimePair = authorTime.innerHTML.split('(');
       author = authorTimePair[0];
       time = authorTimePair[1].split(')')[0];
-      //console.log(hepburn.toHiragana(author) + ' (' + time + ')');
-      //authorTime.innerHTML = hepburn.toHiragana(author) + ' (' + time + ')';
+      authorTime.innerHTML = hepburn.toHiragana(author) + '(' + time + ')';
   }
 
   // settingsObject by GreaseSpot, slightly modified
