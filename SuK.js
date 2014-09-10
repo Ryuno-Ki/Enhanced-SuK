@@ -12,6 +12,22 @@
 
 if (window.top === window.self) {
   // Not inside the ad frame
+  
+  var headline = document.querySelector('#chatForm tbody').children;
+  var tdContainer = document.createElement('td');
+  var japanBtn = document.createElement('input');
+  japanBtn.type = 'button';
+  japanBtn.classList.add('button');
+  japanBtn.classList.add('small');
+  japanBtn.classList.add('pressed');
+  japanBtn.id = 'japanBtn';
+  japanBtn.title = 'Sprache wechseln';
+  japanBtn.value = 'Kanji';
+  tdContainer.appendChild(japanBtn)
+  headline[0].insertBefore(tdContainer, headline[0].children[2]);
+  headline[1].children[0].colspan = '6';
+  headline[2].children[0].colspan = '4';
+      
   var hepburn = require('hepburn');
   var chatMessage = document.querySelectorAll('.chatMessage');
   var authorTime, authorTimePair, author, time;
