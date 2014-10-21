@@ -5,13 +5,31 @@
 // @match       http://schlacht-um-kyoto.de/*
 // @match       http://www.schlacht-um-kyoto.de/*
 // @require     https://code.jquery.com/jquery-1.6.2.min.js
-// @version     0.0.1
+// @version     0.0.5
 // @grant       GM_getValue
 // @grant       GM_setValue
 // ==/UserScript==
 
 if (window.top === window.self) {
   // Not inside the ad frame
+
+  fixLinks();
+
+  function fixLinks() {
+    var current, hit;
+    var messages = document.querySelectorAll('.chatMessage a');
+    var trueLink = /https?:\/\/\w+\.\w+/;
+    for(var link = 0; link < messages.length; link++) {
+      current = messages[link];
+      hit = trueLink.exec(current.href);
+      if(hit == undefined) {
+        // replace element with current.href
+        text = document.createTextNode(current.innerHTML);
+        current.parentNode.replaceChild(text, current);
+      }
+    }
+  }
+  
   var hepburn = require('hepburn');
   var chatMessage = document.querySelectorAll('.chatMessage');
   var authorTime, authorTimePair, author, time;
