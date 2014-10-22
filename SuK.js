@@ -5,15 +5,13 @@
 // @match       http://schlacht-um-kyoto.de/*
 // @match       http://www.schlacht-um-kyoto.de/*
 // @require     https://code.jquery.com/jquery-1.6.2.min.js
-// @version     0.0.5
+// @version     0.0.6
 // @grant       GM_getValue
 // @grant       GM_setValue
 // ==/UserScript==
 
 if (window.top === window.self) {
   // Not inside the ad frame
-
-  fixLinks();
 
   function fixLinks() {
     var current, hit;
@@ -29,17 +27,56 @@ if (window.top === window.self) {
       }
     }
   }
+
+  function addChatButton() {
+    var headline = document.querySelector('#chatForm tbody').children;
+    var tdContainer = document.createElement('td');
+    var japanBtn = document.createElement('input');
+    japanBtn.type = 'button';
+    japanBtn.classList.add('button');
+    japanBtn.classList.add('small');
+    japanBtn.id = 'japanBtn';
+    japanBtn.title = 'Sprache wechseln';
+    japanBtn.value = 'Kanji';
+    tdContainer.appendChild(japanBtn);
+    headline[0].insertBefore(tdContainer, headline[0].children[2]);
+
+    japanBtn = null;
+    japanBtn = document.querySelector('#japanBtn');
+    japanBtn.addEventListener('click', function() {
+      this.classList.toggle('pressed');
+      translate();
+    }, false);
+  }
   
-  var hepburn = require('hepburn');
-  var chatMessage = document.querySelectorAll('.chatMessage');
-  var authorTime, authorTimePair, author, time;
-  for (var i = 0; i < chatMessage.length; i++) {
+  function translate() {
+    var hepburn = require('hepburn');
+    var chatMessage = document.querySelectorAll('.chatMessage');
+    var japanBtn = document.querySelector('#japanBtn');
+    var authorTime, authorTimePair, author, names, time;
+    for (var i = 0; i < chatMessage.length; i++) {
       authorTime = chatMessage[i].children[0];
       authorTimePair = authorTime.innerHTML.split('(');
       author = authorTimePair[0];
+      if (author !== 'Du schreibst ') {
+        if (japanBtn.classList.contains('pressed')) {
+          author = hepburn.toHiragana(author);
+        } else {
+          author = hepburn.fromKana(author);
+          names = author.split(' ');
+          author = '';
+          for (var n = 0; n < names.length; n++) {
+              author += names[n].charAt(0).toUpperCase()+names[n].slice(1)+' ';
+          }
+        }
+      }
       time = authorTimePair[1].split(')')[0];
-      authorTime.innerHTML = hepburn.toHiragana(author) + '(' + time + ')';
+      authorTime.innerHTML = author + '(' + time + ')';
+    }
   }
+  
+  fixLinks();
+  addChatButton();
 
   // settingsObject by GreaseSpot, slightly modified
   function settingsObject(){
