@@ -14,6 +14,12 @@ This is a first step to improve the UX of [Schlacht um Kyoto](http://schlacht-um
  1. Remove the `SuK.user.js` there and symlink it with the git tracked one: `rm SuK.user.js && ln -s $HOME/src/Enhanced-SuK/SuK.user.js $HOME/.mozilla/firefox/*default*/gm_scripts/Enhance_Schlacht-um-Kyoto/`
  1. Log in to [Schlacht-um-Kyoto](http://schlacht-um-kyoto.de) and open the file via RightClick in GreaseMonkey menu
 
+# Development
+
+Clone the repo (see above) into a virtualenv, which is created like so:
+`virtualenv /path/to/local/repo/` and `source /path/to/local/repo/bin/activate`.
+Then install `BeautifulSoup4` and `requests` through either `pip` or `easy_install`.
+
 # Relationship between Instances (somewhat ER)
 
 ![Relationship diagram](./asset/relationship.png)
