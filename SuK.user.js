@@ -14,22 +14,27 @@
 if (window.top === window.self) {
   // Not inside the ad frame
 
-  function fixLinks() {
+  var fixLinks = function() {
     var current, hit;
     var messages = document.querySelectorAll('.chatMessage a');
     var trueLink = /https?:\/\/\w+\.\w+/;
     for(var link = 0; link < messages.length; link++) {
       current = messages[link];
       hit = trueLink.exec(current.href);
-      if(hit == undefined) {
+      if(hit === undefined) {
         // replace element with current.href
         text = document.createTextNode(current.innerHTML);
         current.parentNode.replaceChild(text, current);
       }
     }
-  }
+  };
 
-  function addChatButton() {
+  var suppressAutocomplete = function() {
+    var chatBtn = document.querySelector('#chatInput');
+    chatBtn.autocomplete = 'off';
+  };
+
+  var addChatButton = function() {
     var headline = document.querySelector('#chatForm tbody').children;
     var tdContainer = document.createElement('td');
     var japanBtn = document.createElement('input');
@@ -48,9 +53,9 @@ if (window.top === window.self) {
       this.classList.toggle('pressed');
       translate();
     }, false);
-  }
+  };
   
-  function translate() {
+  var translate = function() {
     var hepburn = require('hepburn');
     var chatMessage = document.querySelectorAll('.chatMessage');
     var japanBtn = document.querySelector('#japanBtn');
@@ -74,21 +79,22 @@ if (window.top === window.self) {
       time = authorTimePair[1].split(')')[0];
       authorTime.innerHTML = author + '(' + time + ')';
     }
-  }
+  };
   
   fixLinks();
+  suppressAutocomplete();
   addChatButton();
 
   // settingsObject by GreaseSpot, slightly modified
-  function settingsObject(){
-  this.prefix="";
-  this.default={};
-  }
+  var settingsObject = function(){
+    this.prefix="";
+    this.default={};
+  };
 
   settingsObject.prototype.set=function(name, value){
-    if(typeof value == "boolean"){ value = value ? "{b}1" : "{b}0"; }
-    else if(typeof value == "string"){ value = "{s}" + value; }
-    else if(typeof value == "number"){ value = "{n}" + value; }
+    if(typeof value === "boolean"){ value = value ? "{b}1" : "{b}0"; }
+    else if(typeof value === "string"){ value = "{s}" + value; }
+    else if(typeof value === "number"){ value = "{n}" + value; }
     else{ value = "{o}" + value.toSource(); }
     GM_setValue(this.prefix+""+name, value);
   };
@@ -133,11 +139,11 @@ if (window.top === window.self) {
     }
   }); // End getUrlVars from http://jquery-howto.blogspot.de/2009/09/get-url-parameters-values-with-jquery.html 
 
-  function decode(snippet) {
+  var decode = function(snippet) {
     var sanitized = snippet;
     if (sanitized) { sanitized = sanitized.replace(/%FC/,'ü'); }
     return sanitized;
-  }
+  };
 
   // Save the values of this town in a database
   var storageDepot = new settingsObject();
