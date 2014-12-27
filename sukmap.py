@@ -5,7 +5,13 @@ import random
 import csv
 import time
 
-username = raw_input('Account Name: ')
+# Polyfill for Python 2.7
+try:
+    input = raw_input
+except NameError:
+    pass
+
+username = input('Account Name: ')
 password = getpass.getpass('Passwort: ')
 
 domain = 'http://schlacht-um-kyoto.de/'
@@ -23,14 +29,14 @@ headers = {'Accept': 'text/html,application/xhtml+xml,application/xml',
 with requests.Session() as s:
     s.post(url, data=credentials, headers=headers)
     details = range(2301)
-    random.shuffle(details)
-    print(details)
+    random.sample(details,len(details))
     csvFile = csv.writer(open('map.csv', 'w'))
     csvFile.writerow(['ID', 'Stadtname', 'Einwohner',
                       'PositionSued', 'PositionOst', 'Spieler', 'SpielerURL',
                       'Klan', 'KlanURL',
                       'Holz', 'Eisen', 'Sake', 'Nahrung', 'Performance'])
     for detailId in details:
+        print(detailId)
         infos = {}
         mapPage = s.get(url + '?page=Karte' + '&detail=' + str(detailId))
         parsedHtml = BeautifulSoup(mapPage.text)
