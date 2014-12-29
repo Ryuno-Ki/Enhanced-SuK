@@ -28,10 +28,10 @@ headers = {'Accept': 'text/html,application/xhtml+xml,application/xml',
 
 with requests.Session() as s:
     s.post(url, data=credentials, headers=headers)
-    details = range(2301)
-    random.sample(details,len(details))
+    details = range(1, 2301)
+    details = random.sample(details, len(details))
     csvFile = csv.writer(open('map.csv', 'w'))
-    csvFile.writerow(['ID', 'Stadtname', 'Einwohner',
+    csvFile.writerow(['ID', 'Stadtname', 'Stadttyp', 'Stadtstufe', 'Einwohner',
                       'PositionSued', 'PositionOst', 'Spieler', 'SpielerURL',
                       'Klan', 'KlanURL',
                       'Holz', 'Eisen', 'Sake', 'Nahrung', 'Performance'])
@@ -71,6 +71,10 @@ with requests.Session() as s:
             townName = townName.replace(u'\xfc', 'ue')
 
             trs = town.find_all('tr')
+
+            townTypeLevel = trs[0].find_all('td')[1].string.split()
+            townType = townTypeLevel[0]
+            townLevel = townTypeLevel[3]
             residents = trs[1].find_all('td')[1].string
 
             user = trs[2].find('a')
@@ -97,7 +101,9 @@ with requests.Session() as s:
 
             infos[detailId] = {'town': {'einwohner': residents,
                                         'position': [ost, sued],
-                                        'name': townName},
+                                        'name': townName,
+                                        'type': townType,
+                                        'level': townLevel},
                                'user': {'name':  userName,
                                         'url': userURL},
                                'clan': {'name': clanName,
@@ -108,7 +114,8 @@ with requests.Session() as s:
                                               'nahrung': food,
                                               'performance': perf}}
 
-            csvFile.writerow([detailId, townName, residents, ost, sued,
+            csvFile.writerow([detailId, townName, townType, townLevel,
+                              residents, ost, sued,
                               userName, infos[detailId]['user']['url'],
                               infos[detailId]['clan']['name'],
                               infos[detailId]['clan']['url'],
