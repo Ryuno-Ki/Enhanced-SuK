@@ -5,3 +5,7 @@
 
 # Ignoring regeneratable files
 node_modules/
+bin/
+include/
+lib/
+local/
