@@ -5,6 +5,7 @@ import random
 import csv
 import time
 
+<<<<<<< HEAD
 # Polyfill for Python 2.7
 try:
     input = raw_input
@@ -12,6 +13,9 @@ except NameError:
     pass
 
 username = input('Account Name: ')
+=======
+username = raw_input('Account Name: ')
+>>>>>>> b73622bb38f493a53b03e3430edf715abc366dd1
 password = getpass.getpass('Passwort: ')
 
 domain = 'http://schlacht-um-kyoto.de/'
@@ -28,15 +32,26 @@ headers = {'Accept': 'text/html,application/xhtml+xml,application/xml',
 
 with requests.Session() as s:
     s.post(url, data=credentials, headers=headers)
+<<<<<<< HEAD
     details = range(1, 2301)
     details = random.sample(details, len(details))
     csvFile = csv.writer(open('map.csv', 'w'))
     csvFile.writerow(['ID', 'Stadtname', 'Stadttyp', 'Stadtstufe', 'Einwohner',
+=======
+    details = range(2301)
+    random.shuffle(details)
+    print(details)
+    csvFile = csv.writer(open('map.csv', 'w'))
+    csvFile.writerow(['ID', 'Stadtname', 'Einwohner',
+>>>>>>> b73622bb38f493a53b03e3430edf715abc366dd1
                       'PositionSued', 'PositionOst', 'Spieler', 'SpielerURL',
                       'Klan', 'KlanURL',
                       'Holz', 'Eisen', 'Sake', 'Nahrung', 'Performance'])
     for detailId in details:
+<<<<<<< HEAD
         print(detailId)
+=======
+>>>>>>> b73622bb38f493a53b03e3430edf715abc366dd1
         infos = {}
         mapPage = s.get(url + '?page=Karte' + '&detail=' + str(detailId))
         parsedHtml = BeautifulSoup(mapPage.text)
@@ -61,9 +76,6 @@ with requests.Session() as s:
                     food = ressPair[1]
                 elif type == 'Gesamt:':
                     perf = ressPair[1]
-                else:
-                    print(ressPair[0])
-                    print(ressPair[1])
 
             town = tables[2] if tables[2] else ''
 
