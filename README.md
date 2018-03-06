@@ -2,6 +2,8 @@
 
 This is a first step to improve the UX of [Schlacht um Kyoto](http://schlacht-um-kyoto.de), a medieval browser game placed in Japan.
 
+**This project is deprecated and may contain potential security vulnerabilities! You have been warned**
+
 # Setup
 
  1. Get [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)
